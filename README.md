@@ -1,15 +1,64 @@
-# Elysia with Bun runtime
+# Bun + HTMX + Elysia + MongoDB + TailwindCSS example app
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
+Heavily inspired by/based on [bun-htmx](https://github.com/danawoodman/bun-htmx)
+
+A simple notes app made with Bun and HTMX. Uses Elysia for content serving/API and MongoDB for storage. Also uses TailwindCSS and DaisyUI for styling.
+
+I made this to learn Bun and ElysiaJS, and to have a simple example app to refer to in the future. If you have any suggestions for improvements, please let me know!
+
+## Technologies
+
+- [Bun](https://bun.sh/)
+- [ElysiaJS](https://elysiajs.com/)
+- [HTMX](https://htmx.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [MongoDB](https://www.mongodb.com/)
+
+## Getting started
+
+1. Clone this repo
+
 ```bash
-bun create elysia ./elysia-example
+git clone https://github.com/DanielCaz/htmx-bun-notes.git
 ```
 
-## Development
-To start the development server run:
+2. Install dependencies
+
 ```bash
-bun run dev
+bun install
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+3. Create a `.env` file in the root of the project and add the following:
+
+```bash
+MONGO_URI=<your-mongodb-uri>
+```
+
+4. Start the server
+
+```bash
+bun dev:tailwind
+bun dev:server
+```
+
+5. Open the app in your browser
+
+```bash
+http://localhost:3000
+```
+
+## Docker
+
+You can also run this app using Docker. To do so, run the following commands:
+
+```bash
+docker-compose build
+docker-compose up
+```
+
+## License
+
+MIT
+
+I hope this is useful to someone. Do whatever you want with it :D
