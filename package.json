@@ -2,14 +2,22 @@
   "name": "htmx-notes",
   "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev:server": "bun run --hot src/index.tsx",
+    "dev:tailwind": "bun run build:tailwind -- --watch",
+    "start": "bun run build/index.js",
+    "build:server": "bun build --target=bun ./src/index.tsx --outfile=build/index.js",
+    "build:tailwind": "tailwindcss -i ./src/tailwind.css -o ./public/tailwind.css"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/html": "^0.7.3",
+    "@elysiajs/static": "^0.7.1",
+    "elysia": "latest",
+    "mongodb": "^6.1.0"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "daisyui": "^3.9.2",
+    "tailwindcss": "^3.3.3"
   },
-  "module": "src/index.js"
+  "module": "src/index.tsx"
 }
