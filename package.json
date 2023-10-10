@@ -1,5 +1,5 @@
 {
-  "name": "htmx-notes",
+  "name": "htmx-bun-notes",
   "version": "1.0.50",
   "scripts": {
     "dev:server": "bun run --hot src/index.tsx",

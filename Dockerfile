@@ -1,13 +1,17 @@
-FROM oven/bun:latest
+FROM oven/bun:latest as base
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-ADD public public
-ADD tailwind.config.js tailwind.config.js
-ADD src src
-ADD package.json package.json
-ADD bun.lockb bun.lockb
+FROM base as build
+
+COPY package.json .
+COPY bun.lockb .
+
 RUN bun install
+
+COPY tailwind.config.js .
+COPY ./src ./src
+COPY tsconfig.json .
 
 ARG MONGODB_URI
 ENV MONGODB_URI=$MONGODB_URI
@@ -15,6 +19,11 @@ ENV MONGODB_URI=$MONGODB_URI
 RUN bun build:tailwind
 RUN bun build:server
 
-EXPOSE $PORT
+FROM base as final
 
-CMD ["bun", "start"]
+COPY --from=build /usr/src/app/node_modules ./node_modules
+COPY --from=build /usr/src/app/build ./build
+COPY --from=build /usr/src/app/package.json .
+COPY ./public ./public
+
+CMD bun start
